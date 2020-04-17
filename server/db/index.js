@@ -15,9 +15,25 @@ client.on("error", (err) => {
 
 module.exports = {
   get: (k, cb) => {
-    client.get(k, cb);
+    return new Promise((resolve, reject) => {
+      client.get(k, (err, res) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(res);
+        }
+      });
+    });
   },
-  set: (k, v, cb) => {
-    client.set(k, v, cb);
+  set: (k, v) => {
+    return new Promise((resolve, reject) => {
+      client.set(k, v, (err, res) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(res);
+        }
+      });
+    });
   },
 };
