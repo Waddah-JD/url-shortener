@@ -1,16 +1,16 @@
 const express = require("express");
-
-const redisClient = require("./db");
+const cors = require("cors");
 
 const PORT = process.env.SERVER_PORT || 8080;
 
 const app = express();
 
+app.use(cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/u", require("./routes/urls"));
-app.use("/", require("./routes/index"));
+app.use("/", require("./routes/urls"));
 
 app.listen(PORT, () => {
   console.log(`Server is up on ${PORT}`);

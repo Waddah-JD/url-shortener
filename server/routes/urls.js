@@ -4,22 +4,23 @@ const router = express.Router();
 const redisClient = require("../db");
 const { addNewUrl } = require("../controllers/urls");
 
-router.route("/:shortUrl").get((req, res) => {
-  return redisClient
-    .get(req.params.shortUrl)
-    .then((fullUrl) => {
-      res.redirect(fullUrl);
-    })
-    .catch((err) => {
-      return { status: "failure", err };
-    });
+router.route("/:shortUrl").get(async (req, res) => {
+  try {
+    const fullUrl = await redisClient.get(req.params.shortUrl);
+    res.redirect(fullUrl);
+  } catch (error) {
+    return { status: "failure", error };
+  }
 });
 
-router.route("/").post((req, res) => {
+router.route("/").post(async (req, res) => {
   const { fullUrl } = req.body;
-  const result = addNewUrl(fullUrl);
-  console.log("result", result);
-  res.json(result);
+  try {
+    const result = await addNewUrl(fullUrl);
+    res.json(result);
+  } catch (error) {
+    res.json({ status: "failure", error });
+  }
 });
 
 module.exports = router;
