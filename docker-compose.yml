@@ -16,9 +16,13 @@ services:
     environment:
       - SERVER_PORT=${SERVER_PORT}
       - REDIS_URL=${REDIS_URL}
-  # app_client:
-  #   build: ./client
-  #   links:
-  #     - app_server
-  #   ports:
-  #     - 3000:3000
+
+  app_client:
+    build: ./client
+    links:
+      - app_server
+    ports:
+      - ${REACT_APP_CLIENT_PORT}:${REACT_APP_ORIGINAL_PORT}
+    environment:
+      - SERVER_URL=${SERVER_URL}
+    stdin_open: true
