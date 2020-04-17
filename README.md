@@ -1,10 +1,10 @@
 # url-shortner
 insert a long url, and receive a shorter one.
-<br>
+<br><br><br>
 powered by: Node, Express, Redis, React, Redux and Docker
-<br>
+<br><br><br>
 instructions: `docker-compose up --build` -> visit `http://localhost:3333/`
-<br>
+<br><br><br>
 Backlog:
 - make sure that ids are unique
 - show all available urls on load
