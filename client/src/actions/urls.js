@@ -15,3 +15,15 @@ export const submitNewUrlSuccess = (url) => {
 export const submitNewUrlFail = (error) => {
   return { type: actionTypes.SUBMIT_NEW_URL_FAIL, payload: error };
 };
+
+export const getAllUrls = () => {
+  return { type: actionTypes.GET_ALL_URLS };
+};
+
+export const getAllUrlsSuccess = (urls) => {
+  return { type: actionTypes.GET_ALL_URLS_SUCCESS, payload: urls };
+};
+
+export const getAllUrlsFail = (error) => {
+  return { type: actionTypes.GET_ALL_URLS_FAIL, payload: error };
+};

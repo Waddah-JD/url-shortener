@@ -6,6 +6,7 @@ const formValuesSelector = createSelector(
   formSelector,
   (form) => form.values || {}
 );
+
 export const formFullUrlValueSelector = createSelector(
   formValuesSelector,
   (values) => values.fullUrl || ""
@@ -21,4 +22,24 @@ export const formErrorSelector = createSelector(
   (form) => form.error
 );
 
-export const urlsSelector = (state) => state.urls;
+const urlsSelector = (state) => state.urls;
+
+export const previouslyAddedUrlsSelector = createSelector(
+  urlsSelector,
+  (urls) => urls.previouslyAdded
+);
+
+export const recentlyAddedUrlsSelector = createSelector(
+  urlsSelector,
+  (urls) => urls.recentlyAdded
+);
+
+export const urlsLoadingSelector = createSelector(
+  urlsSelector,
+  (urls) => urls.loading
+);
+
+export const urlsLoadingErrorSelector = createSelector(
+  urlsSelector,
+  (urls) => urls.error
+);

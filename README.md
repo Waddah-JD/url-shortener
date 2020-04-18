@@ -8,7 +8,6 @@ instructions: `docker-compose up --build` -> visit `http://localhost:3333/` for 
 as for the API endpoint, it's "separately" accessible at: `http://localhost:42666/`
 <br><br><br>
 Backlog:
-- show all available urls on load
 - build a `production` version and use it in docker-compose instead of built `development` version
 - cover reducers with tests
 - make it visually ok(ish)

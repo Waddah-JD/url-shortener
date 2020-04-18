@@ -6,7 +6,12 @@ const defaultState = {
     isSubmiting: false,
     error: undefined,
   },
-  urls: [],
+  urls: {
+    recentlyAdded: [],
+    previouslyAdded: [],
+    loading: false,
+    error: undefined,
+  },
 };
 
 export default (state = defaultState, action) => {
@@ -30,7 +35,10 @@ export default (state = defaultState, action) => {
           isSubmiting: false,
           error: undefined,
         },
-        urls: [...state.urls, action.payload],
+        urls: {
+          ...state.urls,
+          recentlyAdded: [...state.urls.recentlyAdded, action.payload],
+        },
       };
     case actionTypes.SUBMIT_NEW_URL_FAIL:
       return {
@@ -41,6 +49,22 @@ export default (state = defaultState, action) => {
           isSubmiting: false,
           error: action.error,
         },
+      };
+    case actionTypes.GET_ALL_URLS:
+      return { ...state, urls: { ...state.urls, loading: true } };
+    case actionTypes.GET_ALL_URLS_SUCCESS:
+      return {
+        ...state,
+        urls: {
+          ...state.urls,
+          loading: false,
+          previouslyAdded: action.payload,
+        },
+      };
+    case actionTypes.GET_ALL_URLS_FAIL:
+      return {
+        ...state,
+        urls: { ...state.urls, loading: false, error: action.payload },
       };
     default:
       return state;

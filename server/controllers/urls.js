@@ -4,8 +4,13 @@ const generateRandomId = require("../utils/generateRandomId");
 
 const addNewUrl = async (fullUrl) => {
   let shortUrl;
+  let alreadyAddedKeys;
 
-  const alreadyAddedKeys = await redisClient.getAllKeys();
+  try {
+    alreadyAddedKeys = await redisClient.getAllKeys();
+  } catch (err) {
+    alreadyAddedKeys = [];
+  }
 
   while (!shortUrl) {
     const generated = generateRandomId(7);
@@ -22,4 +27,13 @@ const addNewUrl = async (fullUrl) => {
   }
 };
 
-module.exports = { addNewUrl };
+const getAllUrls = async () => {
+  try {
+    const alreadyAddedKeys = await redisClient.getAllKeys();
+    return { status: "success", urls: alreadyAddedKeys };
+  } catch (error) {
+    return { status: "failure", error };
+  }
+};
+
+module.exports = { addNewUrl, getAllUrls };
