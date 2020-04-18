@@ -9,8 +9,6 @@ services:
     build: ./server
     links:
       - redis
-    expose:
-      - ${SERVER_PORT}
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
     environment:
@@ -24,5 +22,5 @@ services:
     ports:
       - ${REACT_APP_CLIENT_PORT}:${REACT_APP_ORIGINAL_PORT}
     environment:
-      - SERVER_URL=${SERVER_URL}
+      - REACT_APP_API_ENDPOINT=${REACT_APP_API_ENDPOINT}
     stdin_open: true

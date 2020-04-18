@@ -3,7 +3,7 @@ import { put } from "redux-saga/effects";
 import { submitNewUrlSuccess, submitNewUrlFail } from "../actions/urls";
 
 export default function* ({ payload }) {
-  const url = "http://localhost:42666/";
+  const url = process.env.REACT_APP_API_ENDPOINT;
 
   const result = yield fetch(url, {
     method: "POST",
