@@ -20,7 +20,7 @@ const NewUrlForm = () => {
     dispatch(changeNewUrlFormValue(fullUrl));
   return (
     <>
-      <h2>Added URLs:</h2>
+      <h2>Add a new a URL:</h2>
       <form>
         <input
           name="fullUrl"
