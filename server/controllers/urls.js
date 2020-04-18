@@ -3,7 +3,16 @@ const redisClient = require("../db");
 const generateRandomId = require("../utils/generateRandomId");
 
 const addNewUrl = async (fullUrl) => {
-  const shortUrl = generateRandomId(7);
+  let shortUrl;
+
+  const alreadyAddedKeys = await redisClient.getAllKeys();
+
+  while (!shortUrl) {
+    const generated = generateRandomId(7);
+    if (alreadyAddedKeys.indexOf(generated) === -1) {
+      shortUrl = generated;
+    }
+  }
 
   try {
     await redisClient.set(shortUrl, fullUrl);

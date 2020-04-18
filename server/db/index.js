@@ -14,7 +14,7 @@ client.on("error", (err) => {
 });
 
 module.exports = {
-  get: (k, cb) => {
+  get: (k) => {
     return new Promise((resolve, reject) => {
       client.get(k, (err, res) => {
         if (err) {
@@ -25,9 +25,22 @@ module.exports = {
       });
     });
   },
+
   set: (k, v) => {
     return new Promise((resolve, reject) => {
       client.set(k, v, (err, res) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(res);
+        }
+      });
+    });
+  },
+
+  getAllKeys: () => {
+    return new Promise((resolve, reject) => {
+      client.keys("*", (err, res) => {
         if (err) {
           reject(err);
         } else {

@@ -5,10 +5,9 @@ powered by: Node, Express, Redis, React, Redux and Docker
 <br><br><br>
 instructions: `docker-compose up --build` -> visit `http://localhost:3333/` for the UI
 <br>
-as for the API endpoint, it's (separately?) accessible at: `http://localhost:42666/`
+as for the API endpoint, it's "separately" accessible at: `http://localhost:42666/`
 <br><br><br>
 Backlog:
-- make sure that ids are unique
 - show all available urls on load
 - build a `production` version and use it in docker-compose instead of built `development` version
 - cover reducers with tests
